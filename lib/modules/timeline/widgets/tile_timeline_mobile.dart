@@ -10,11 +10,13 @@ class TiletimelineMobile extends StatefulWidget {
   final Timeline timeline;
   final int index;
   final Duration delay;
+  final bool cancelAnimation;
   const TiletimelineMobile({
     Key? key,
     required this.timeline,
     required this.index,
     required this.delay,
+    this.cancelAnimation = false,
   }) : super(key: key);
 
   @override
@@ -37,7 +39,7 @@ class _TiletimelineMobileState extends State<TiletimelineMobile>
     addPostFrame(
       afterDelay: widget.delay,
       callback: () {
-        if (mounted) controller.forward();
+        if (mounted) controller.forward(from: widget.cancelAnimation ? 1 : 0);
         setStateSafety(() {
           canShowWidget = true;
         });
@@ -74,6 +76,7 @@ class _TiletimelineMobileState extends State<TiletimelineMobile>
               ),
               Center(
                 child: CircleYear(
+                  cancelAnimation: widget.cancelAnimation,
                   animationController: controller,
                   diameter: 110,
                   strokeWidth: 5,
@@ -89,7 +92,8 @@ class _TiletimelineMobileState extends State<TiletimelineMobile>
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: FadeContainer(
-              delay: widget.delay,
+              durationAnimation: widget.cancelAnimation ? Duration.zero : null,
+              delay: widget.cancelAnimation ? Duration.zero : widget.delay,
               child: Text(
                 widget.timeline.description.trimAll(),
                 style: context.textTheme.bodyText1

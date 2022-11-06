@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rennan_portifolio/data/model/timeline.dart';
 import 'package:rennan_portifolio/themes/colors/app_colors.dart';
 import 'package:rennan_portifolio/utils/extensions_utils.dart';
+import 'package:rennan_portifolio/utils/manager_routes.dart';
 import 'widgets/tile_timeline_mobile.dart';
 
 class BodyTimelineMobile extends StatefulWidget {
@@ -55,6 +56,7 @@ class _BodyTimelineMobileState extends State<BodyTimelineMobile>
                       final timeline = widget.timelines[index];
                       final delay = Duration(seconds: (3 * index) - 1);
                       return TiletimelineMobile(
+                        cancelAnimation: ManagerApp.cancelAnimationTimeline,
                         key: keysTimelines[index],
                         timeline: timeline,
                         index: index,
