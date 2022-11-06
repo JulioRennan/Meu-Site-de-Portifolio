@@ -38,7 +38,6 @@ class _AppScreenState extends State<AppScreen>
         extendBodyBehindAppBar: true,
         primary: true,
         appBar: AppBar(
-          
           automaticallyImplyLeading: false,
           backgroundColor: AppColors.darkPrimaryColor.withOpacity(0.5),
           elevation: 1,

@@ -11,7 +11,7 @@ class CircleYear extends StatefulWidget {
   final Duration? delayTextYear;
   final double diameter;
   final double strokeWidth;
-
+  final bool cancelAnimation;
   const CircleYear({
     Key? key,
     this.animationController,
@@ -19,6 +19,7 @@ class CircleYear extends StatefulWidget {
     this.delayTextYear,
     this.diameter = 160.0,
     this.strokeWidth = 10,
+    this.cancelAnimation = true,
   }) : super(key: key);
 
   @override
@@ -44,8 +45,12 @@ class _CircleYearState extends State<CircleYear>
       ..addListener(() {
         setState(() {});
       });
-    drawCircleAnimation = tween
-        .animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
+    drawCircleAnimation = tween.animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Curves.decelerate,
+      ),
+    );
   }
 
   @override
@@ -71,7 +76,8 @@ class _CircleYearState extends State<CircleYear>
           strokeWidth: widget.strokeWidth,
         ),
         child: FadeContainer(
-          delay: widget.delayTextYear,
+          durationAnimation: widget.cancelAnimation ? Duration.zero : null,
+          delay: widget.cancelAnimation ? Duration.zero : widget.delayTextYear,
           child: Center(
             child: Text(
               widget.year,

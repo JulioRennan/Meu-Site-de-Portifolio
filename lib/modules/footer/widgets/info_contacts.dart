@@ -14,7 +14,7 @@ class InfoContacts extends StatefulWidget {
 }
 
 class _InfoContactsState extends State<InfoContacts> {
-  late final Timer timerFloatingAnimation;
+  Timer? timerFloatingAnimation;
   late final List<double> positions;
   final defaultposition = 70;
   bool isFirst = true;
@@ -35,7 +35,7 @@ class _InfoContactsState extends State<InfoContacts> {
 
   @override
   void dispose() {
-    timerFloatingAnimation.cancel();
+    timerFloatingAnimation?.cancel();
     super.dispose();
   }
 

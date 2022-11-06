@@ -25,13 +25,13 @@ são: Flutter, Swift e TypeScript.''';
           Text(
             profileName,
             style: textTheme.headline4
-                ?.copyWith(color: AppColors.lightSecondary)
+                ?.copyWith(color: AppColors.secondaryColor)
                 .responsive(context),
           ),
           Text(
             title,
             style: textTheme.headline4
-                ?.copyWith(color: AppColors.secondaryColor.withOpacity(.9))
+                ?.copyWith(color: AppColors.lightSecondary)
                 .responsive(context),
           ),
           Text(

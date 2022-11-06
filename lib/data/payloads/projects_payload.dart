@@ -51,25 +51,6 @@ Permitindo realizar todas as funções da plataforma de maneira offline, e depoi
         ],
       ),
       Project(
-        title: "Agência Lã",
-        description: '''
-Projeto em andamento de uma Startup de babás, em que estou responsável pela parte mobile.
-Atualmente o projeto se encontra no desenvolvimento do MVP com as seguintes funcionalidades:@n
-@t+Criação de contas.@n
-@t+Cadastro completo de endereços e crianças que o usuário é responsável.@n
-@t+Realização de agendamentos.@n@n
-
-Ps: Repositório Fechado.
-      ''',
-        statusRepo: StatusRepo.private,
-        techs: [
-          Tech(
-            imagePath: ManagerPath.iconFlutter,
-            name: "Flutter",
-          ),
-        ],
-      ),
-      Project(
         title: "Festval",
         description: '''
 Solução de varejo Android/iOS em que fiquei a frente do código do projeto na parte mobile, 
@@ -81,6 +62,23 @@ Enquanto estava na empresa MarketEasy.
 + Pagamentos pelo app.@n@n
 Ps: Repositório Fechado.
 
+      ''',
+        statusRepo: StatusRepo.private,
+        techs: [
+          Tech(
+            imagePath: ManagerPath.iconFlutter,
+            name: "Flutter",
+          ),
+        ],
+      ),
+      Project(
+        title: "Lovyca",
+        description: '''
+Solução para cuidar da sua casa, qualquer questão relacionada a bem-estar, você pode encontrar na Lovyca.
+@nNele eu fui responsável por:@n
++ Realização de manutenções (Android/iOS).@n
++ Refatoração da aquitetura afim de ganhar maior produtividade/performance (Android/iOS)@n
+Ps: Repositório Fechado.
       ''',
         statusRepo: StatusRepo.private,
         techs: [

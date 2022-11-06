@@ -11,11 +11,13 @@ class Tiletimeline extends StatefulWidget {
   final Timeline timeline;
   final int index;
   final Duration delay;
+  final bool cancelAnimation;
   const Tiletimeline({
     Key? key,
     required this.timeline,
     required this.index,
     required this.delay,
+    this.cancelAnimation = true,
   }) : super(key: key);
 
   @override
@@ -30,15 +32,21 @@ class _TiletimelineState extends State<Tiletimeline>
   @override
   void initState() {
     super.initState();
+
     controller = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
     );
-    addPostFrame(
+    if (widget.cancelAnimation) {
+      controller.forward(from: 1);
+    } else {
+      addPostFrame(
         afterDelay: widget.delay,
         callback: () {
           if (mounted) controller.forward();
-        });
+        },
+      );
+    }
   }
 
   @override
@@ -60,6 +68,7 @@ class _TiletimelineState extends State<Tiletimeline>
           if (widget.index.isRightCircle) const Spacer(),
           if (widget.index.isLeftCircle) ...[
             CircleYear(
+              cancelAnimation: widget.cancelAnimation,
               animationController: controller,
               year: widget.timeline.year.toString(),
               delayTextYear: widget.delay,
@@ -73,7 +82,8 @@ class _TiletimelineState extends State<Tiletimeline>
             padding: const EdgeInsets.only(top: 10),
             width: context.screenSize.width < 1200 ? 520 : 700,
             child: FadeContainer(
-              delay: widget.delay,
+              delay: widget.cancelAnimation ? Duration.zero : widget.delay,
+              durationAnimation: widget.cancelAnimation ? Duration.zero : null,
               child: Text(
                 widget.timeline.description.trimAll(),
                 style: context.textTheme.bodyText1
@@ -90,6 +100,7 @@ class _TiletimelineState extends State<Tiletimeline>
               width: spaceBetweenTextAndCircle,
             ),
             CircleYear(
+              cancelAnimation: widget.cancelAnimation,
               animationController: controller,
               year: widget.timeline.year.toString(),
               delayTextYear: widget.delay,

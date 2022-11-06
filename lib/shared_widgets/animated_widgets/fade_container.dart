@@ -6,6 +6,7 @@ class FadeContainer extends StatefulWidget {
   final Duration? delay;
   final Duration? durationAnimation;
   final double? opacity;
+  
   const FadeContainer({
     Key? key,
     required this.child,

@@ -48,10 +48,11 @@ o time de iOS do Instituto de Pesquisas Eldorado.
   Timeline(
     year: 2022,
     description: '''
-Atualmente sou desenvoldedor iOS no Instituto de Pesquisas Eldorado. 
+Atualmente sou desenvoldedor Flutter na Agrosmart. 
 E em breve lancarei o proejto "Duck Coder", voltado para o ensino de programação para iniciantes, 
 abrangendo conceitos teóricos como estrutura de dados, análise de complexidade e alguns outros conceitos
-que não são abordados em cursos de full stack convencionais.
+que não são abordados em cursos de full stack convencionais. Esse foi uma ano que tive duas experiências incríveis, que foi o final do meu estágio no Instituto Eldorado.
+E a experiêcia como desenvolvedor Flutter na Lovyca.
 ''',
   ),
 ];

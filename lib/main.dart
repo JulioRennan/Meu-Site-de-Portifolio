@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: defaultAppTheme,
       routes: {
         '/hideContacts': (BuildContext context) {
-          ManagerRoutes.hideContacts = true;
+          ManagerApp.hideContacts = true;
           return WillPopScope(
             child: const AppScreen(),
             onWillPop: () async => false,

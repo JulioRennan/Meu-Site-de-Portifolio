@@ -7,8 +7,13 @@ import 'package:rennan_portifolio/themes/colors/app_colors.dart';
 class PathYears extends StatefulWidget {
   final double width;
   final Duration delay;
-  const PathYears({Key? key, required this.width, required this.delay})
-      : super(key: key);
+  final bool cancelAnimation;
+  const PathYears({
+    Key? key,
+    required this.width,
+    required this.delay,
+    this.cancelAnimation = false,
+  }) : super(key: key);
 
   @override
   State<PathYears> createState() => _PathYearsState();
@@ -20,14 +25,18 @@ class _PathYearsState extends State<PathYears> {
   void initState() {
     super.initState();
     widthOverlay = widget.width;
-    SchedulerBinding.instance?.addPostFrameCallback((timeStamp) {
-      Future.delayed(widget.delay).then(((_) {
-        if (!mounted) return;
-        setState(() {
-          widthOverlay = 0;
-        });
-      }));
-    });
+    if (widget.cancelAnimation) {
+      widthOverlay = 0;
+    } else {
+      SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+        Future.delayed(widget.delay).then(((_) {
+          if (!mounted) return;
+          setState(() {
+            widthOverlay = 0;
+          });
+        }));
+      });
+    }
   }
 
   @override

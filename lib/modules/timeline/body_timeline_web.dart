@@ -6,6 +6,8 @@ import 'package:rennan_portifolio/themes/colors/app_colors.dart';
 import 'package:rennan_portifolio/utils/extensions_utils.dart';
 import 'dart:math' as math;
 
+import 'package:rennan_portifolio/utils/manager_routes.dart';
+
 class BodyTimelineWeb extends StatefulWidget {
   final List<Timeline> timelines;
   const BodyTimelineWeb({Key? key, required this.timelines}) : super(key: key);
@@ -14,9 +16,19 @@ class BodyTimelineWeb extends StatefulWidget {
   State<BodyTimelineWeb> createState() => _BodyTimelineWebState();
 }
 
-class _BodyTimelineWebState extends State<BodyTimelineWeb>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController controller;
+class _BodyTimelineWebState extends State<BodyTimelineWeb> {
+  @override
+  void initState() {
+    super.initState();
+
+    /// Cancela a animação após o delay do ultimo index;
+    Future.delayed(delayByIndex(widget.timelines.length)).then(
+      (value) {
+        ManagerApp.cancelAnimationTimeline = true;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,6 +41,7 @@ class _BodyTimelineWebState extends State<BodyTimelineWeb>
                 left: offsetPostionLeft,
                 top: offsetPositionTopByIndex(i),
                 child: PathYears(
+                  cancelAnimation: ManagerApp.cancelAnimationTimeline,
                   width: widthPath,
                   delay: delayByIndex(i) + const Duration(seconds: 2),
                 ),
@@ -42,6 +55,7 @@ class _BodyTimelineWebState extends State<BodyTimelineWeb>
                   alignment: Alignment.center, //Default is left
                   transform: Matrix4.rotationY(math.pi), //
                   child: PathYears(
+                    cancelAnimation: ManagerApp.cancelAnimationTimeline,
                     width: widthPath,
                     delay: delayByIndex(i) + const Duration(seconds: 2),
                   ),
@@ -70,6 +84,7 @@ class _BodyTimelineWebState extends State<BodyTimelineWeb>
                   final timeline = widget.timelines[index];
                   final delay = delayByIndex(index);
                   return Tiletimeline(
+                    cancelAnimation: ManagerApp.cancelAnimationTimeline,
                     timeline: timeline,
                     index: index,
                     delay: delay,

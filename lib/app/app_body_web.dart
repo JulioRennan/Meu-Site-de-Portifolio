@@ -12,11 +12,11 @@ import '../themes/colors/app_colors.dart';
 class AppBodyWeb extends StatelessWidget {
   final ScrollController appScrollController;
   final int indexSelected;
-  const AppBodyWeb(
-      {Key? key,
-      required this.appScrollController,
-      required this.indexSelected})
-      : super(key: key);
+  const AppBodyWeb({
+    Key? key,
+    required this.appScrollController,
+    required this.indexSelected,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -83,5 +83,5 @@ class WidgetsOffset {
   static const home = 80.0;
   static const projects = 670.0;
   static const timeline = 1940.0;
-  static const aboutMe = 4800.0;
+  static const aboutMe = 4400.0;
 }

@@ -1,12 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:rennan_portifolio/themes/colors/app_colors.dart';
 import 'package:rennan_portifolio/utils/manager_path.dart';
 import 'package:rennan_portifolio/utils/extensions_utils.dart';
 import 'package:rennan_portifolio/utils/manager_routes.dart';
-import 'widgets/background_home.dart';
 import 'widgets/button_contact/button_contact.dart';
 import 'widgets/image_profile_home.dart';
 import 'widgets/text_home.dart';
@@ -27,18 +23,17 @@ class BodyHomeWeb extends StatelessWidget {
             colors: [Colors.black, Colors.transparent],
           ).createShader(Rect.fromLTRB(
             0,
-            rect.height * 0.75,
-            rect.width,
-            rect.height * 0.95,
+            rect.height * 0.96,
+            0,
+            rect.height,
           ));
         },
         blendMode: BlendMode.dstIn,
         child: Stack(
           children: [
-            const BackgroundHome(),
             if (context.screenSize.width > 1000)
-              Positioned(
-                top: 80,
+              const Positioned(
+                top: -60,
                 right: 0,
                 child: ImageProfileHome(),
               )
@@ -49,9 +44,12 @@ class BodyHomeWeb extends StatelessWidget {
                 right: calcRightPostionImageProfile(context),
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 800),
+                  clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
-                    borderRadius: calcBorderRadius(context),
-                    border: calcBorderRadius(context) != BorderRadius.zero
+                    shape: isCircular(context)
+                        ? BoxShape.circle
+                        : BoxShape.rectangle,
+                    border: isCircular(context)
                         ? Border.all(
                             color: AppColors.secondaryColor,
                             width: 2,
@@ -63,11 +61,12 @@ class BodyHomeWeb extends StatelessWidget {
                       )
                     ],
                   ),
-                  clipBehavior: Clip.antiAlias,
                   width: calcSizeWidthImage(context),
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: calcBorderRadius(context),
+                      shape: isCircular(context)
+                          ? BoxShape.circle
+                          : BoxShape.rectangle,
                     ),
                     clipBehavior: Clip.antiAlias,
                     child: Image.asset(ManagerPath.mainImagePerson),
@@ -84,7 +83,7 @@ class BodyHomeWeb extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  if (!ManagerRoutes.hideContacts) ButtonContact(),
+                  if (!ManagerApp.hideContacts) ButtonContact(),
                 ],
               ),
             )
@@ -94,20 +93,11 @@ class BodyHomeWeb extends StatelessWidget {
     );
   }
 
-  void getParams() {
-    var uri = Uri.dataFromString(window.location.href);
-    Map<String, String> params = uri.queryParameters;
-    var origin = params['origin'];
-    var destiny = params['destiny'];
-    print(origin);
-    print(destiny);
-  }
-
   double calcHeightHome(BuildContext context) {
     if (context.isMobileLayout) {
       return 620;
     } else {
-      return 680;
+      return 750;
     }
   }
 
@@ -159,18 +149,14 @@ class BodyHomeWeb extends StatelessWidget {
     } else if (width >= 700) {
       return 280;
     } else if (width >= 500) {
-      return 200;
+      return 180;
     } else {
-      return 150;
+      return 130;
     }
   }
 
-  BorderRadius calcBorderRadius(BuildContext context) {
+  bool isCircular(BuildContext context) {
     final width = context.screenSize.width;
-    if (width >= 980) {
-      return BorderRadius.zero;
-    } else {
-      return BorderRadius.circular(1000);
-    }
+    return !(width >= 980);
   }
 }

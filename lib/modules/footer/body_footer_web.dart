@@ -26,7 +26,7 @@ class BodyFooterWeb extends StatelessWidget {
                 .responsive(context),
           ),
           const Spacer(),
-          if (!ManagerRoutes.hideContacts) const InfoContacts()
+          if (!ManagerApp.hideContacts) const InfoContacts()
         ],
       ),
     );
