@@ -35,7 +35,7 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     if (widget.isFirst) {
       WidgetsBinding.instance
-          ?.addPostFrameCallback((_) => animateUndelinePosition());
+          .addPostFrameCallback((_) => animateUndelinePosition());
     }
 
     return Stack(

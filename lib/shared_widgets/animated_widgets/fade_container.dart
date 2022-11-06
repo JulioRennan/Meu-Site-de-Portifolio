@@ -6,7 +6,7 @@ class FadeContainer extends StatefulWidget {
   final Duration? delay;
   final Duration? durationAnimation;
   final double? opacity;
-  
+
   const FadeContainer({
     Key? key,
     required this.child,
@@ -25,7 +25,7 @@ class _FadeContainerState extends State<FadeContainer> {
   void initState() {
     super.initState();
     if (widget.opacity == null) {
-      SchedulerBinding.instance?.addPostFrameCallback((_) {
+      SchedulerBinding.instance.addPostFrameCallback((_) {
         Future.delayed(widget.delay ?? const Duration(milliseconds: 200))
             .then((value) {
           if (!mounted) return;

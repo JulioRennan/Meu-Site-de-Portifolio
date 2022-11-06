@@ -39,11 +39,11 @@ class BodyHomeWeb extends StatelessWidget {
               )
             else
               AnimatedPositioned(
-                duration: Duration(milliseconds: 800),
+                duration: const Duration(milliseconds: 800),
                 top: calcTopPostionImageProfile(context),
                 right: calcRightPostionImageProfile(context),
                 child: AnimatedContainer(
-                  duration: Duration(milliseconds: 800),
+                  duration: const Duration(milliseconds: 800),
                   clipBehavior: Clip.antiAlias,
                   decoration: BoxDecoration(
                     shape: isCircular(context)
@@ -80,10 +80,10 @@ class BodyHomeWeb extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextHome(width: calcwidthTextHome(context)),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  if (!ManagerApp.hideContacts) ButtonContact(),
+                  if (!ManagerApp.hideContacts) const ButtonContact(),
                 ],
               ),
             )

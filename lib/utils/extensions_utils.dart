@@ -29,7 +29,7 @@ extension WidgetsUtils on State {
     Duration? afterDelay,
     required void Function() callback,
   }) {
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       if (afterDelay != null) {
         Future.delayed(afterDelay).then((_) => callback());
       } else {
